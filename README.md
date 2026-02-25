@@ -1,4 +1,4 @@
-# Envoy Gateway on K3s with MetalLB
+# Envoy Gateway on K3s/K8s with MetalLB
 
 A step-by-step guide to deploy [Envoy Gateway](https://gateway.envoyproxy.io/) on a bare-metal K3s cluster using MetalLB as the LoadBalancer provider.
 

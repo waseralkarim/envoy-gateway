@@ -1,0 +1,45 @@
+# Envoy Gateway on K3s with MetalLB
+
+A step-by-step guide to deploy [Envoy Gateway](https://gateway.envoyproxy.io/) on a bare-metal K3s cluster using MetalLB as the LoadBalancer provider.
+
+## Overview
+
+This repository contains manifests and setup guides for running Envoy Gateway with the Kubernetes Gateway API on an on-premise K3s cluster. MetalLB handles LoadBalancer IP assignment, and Envoy Gateway manages HTTP/HTTPS traffic routing.
+
+### Architecture
+
+```bash
+Client Request
+       │
+       ▼
+   MetalLB (L2/BGP)
+   Assigns External IP
+       │
+       ▼
+   Envoy Gateway (envoy-gateway-system namespace)
+   ├── envoy-gateway (controller)
+   └── envoy-proxy (data plane)
+       │
+       ▼
+   HTTPRoute
+   (routes traffic based on hostname/path)
+       │
+       ▼
+   Backend Services (any namespace)
+```
+
+## Prerequisites
+
+- K3s/K8S cluster (single or multi-node)
+- `kubectl` configured
+- Helm v3 installed
+- A TLS certificate stored as a Kubernetes Secret (for HTTPS)
+
+## Repository Structure
+
+| File | Description |
+| --- | --- |
+| `01-metallb-2-setup.md` | MetalLB installation and IP pool configuration |
+| `02-envoy-gateway-setup.md` | Envoy Gateway installation via Helm |
+| `03-gateway.yaml` | Gateway resource with HTTP and HTTPS listeners |
+| `04-gatewayclass.yaml` | GatewayClass resource for Envoy Gateway |

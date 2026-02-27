@@ -1,0 +1,49 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ${APP_NAME}-httproute
+  namespace: ${APP_NAMESPACE}
+spec:
+  parentRefs:
+    - name: ${GATEWAY_NAME}
+      namespace: ${GATEWAY_NAMESPACE}
+      sectionName: https
+  hostnames:
+    - "${APP_HOSTNAME}"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: ${SERVICE_NAME}
+          port: ${SERVICE_PORT}
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: ${APP_NAME}-backend-policy
+  namespace: ${APP_NAMESPACE}
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: ${APP_NAME}-httproute
+
+  httpUpgrade:
+    - type: websocket
+
+  timeout:
+    http:
+      connectionIdleTimeout: 3600s
+      requestTimeout: 0s
+    tcp:
+      connectTimeout: 15s
+
+  circuitBreaker:
+    maxConnections: 50000
+    maxPendingRequests: 50000
+    maxParallelRequests: 50000
+
+  connection:
+    bufferLimit: 32768

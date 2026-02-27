@@ -17,3 +17,11 @@ Install the Gateway API CRDs and Envoy Gateway:
 ```bash
 helm install eg oci://docker.io/envoyproxy/gateway-helm --version v1.6.3 -n envoy-gateway-system --create-namespace
 ```
+**Create secret for gateway**
+
+```bash
+kubectl create secret tls osl-team \
+  --cert=osl-team.crt \
+  --key=osl-team.key 
+  -n envoy-gateway-system
+```

@@ -1,4 +1,4 @@
-<img width="1920" height="1080" alt="Black and Green Modern Marketing Plan Presentation" src="https://github.com/user-attachments/assets/42d081c8-ff7b-43fc-b9f7-342275ed8c4a" /># Envoy Gateway on K3s/K8s with MetalLB
+# Envoy Gateway on K3s/K8s with MetalLB
 
 <img width="1920" height="1080" alt="Black and Green Modern Marketing Plan Presentation" src="https://github.com/user-attachments/assets/c7d3e9bd-b81e-48a0-b8ec-b68a5100a43f" />
 

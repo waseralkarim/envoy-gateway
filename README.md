@@ -47,4 +47,5 @@ The installation process is organized into the following documents:
 3. **[Gateway](03-gateway.yaml)** - Gateway resource with HTTP and HTTPS listeners
 4. **[GatewayClass](04-gatewayclass.yaml)** - GatewayClass resource for Envoy Gateway
 5. **[Http Route](05-httproute.yaml)** - Http Route Template
+6. **[Multi Domain](06-multiple-domain-ssl.md)** - Multiple domain/ssl setup
 

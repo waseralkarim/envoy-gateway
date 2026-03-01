@@ -4,8 +4,6 @@
 
 - **Gateway:** `eg` in `envoy-gateway-system` namespace
 
----
-
 ## Step 1: Create TLS Secret
 
 Save as `secret.yaml`:
@@ -31,8 +29,6 @@ kubectl create secret tls new-domain-cert \
   --key=privkey.pem \
   -n envoy-gateway-system
 ```
-
----
 
 ## Step 2: Update Gateway
 
@@ -76,9 +72,6 @@ Apply:
 kubectl apply -f gateway.yaml
 ```
 
----
-
----
 
 ## Step 3: Create HTTPRoute
 
@@ -113,8 +106,6 @@ Apply:
 kubectl apply -f httproute.yaml
 ```
 
----
-
 ## Step 4: Update DNS
 
 Add an A record pointing your domain to the Gateway IP:
@@ -122,8 +113,6 @@ Add an A record pointing your domain to the Gateway IP:
 ```bash
 myapp.newdomain.com  →  192.168.6.19
 ```
-
----
 
 ## Step 5: Verify
 
@@ -137,8 +126,6 @@ kubectl get httproute -A
 # Test TLS cert (use --resolve to send correct SNI)
 curl -vk --resolve myapp.newdomain.com:443:192.168.6.19 https://myapp.newdomain.com/
 ```
-
----
 
 ## Important Notes
 

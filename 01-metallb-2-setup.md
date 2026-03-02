@@ -1,6 +1,6 @@
 # Install Metallb-2
 
-**Steps 1: Enable strict ARP mode**
+**Steps 1: Enable strict ARP mode** (Ignore for K3s)
 
 ```bash
 kubectl edit configmap -n kube-system kube-proxy

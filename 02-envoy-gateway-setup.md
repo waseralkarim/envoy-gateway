@@ -25,3 +25,4 @@ kubectl create secret tls osl-team \
   --key=osl-team.key 
   -n envoy-gateway-system
 ```
+[← MetalLB installation](01-metallb-2-setup.md) | [Next: Gateway](03-gateway.yaml)

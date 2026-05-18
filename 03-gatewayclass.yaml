@@ -1,0 +1,19 @@
+# gatewayclass.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: eg
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  
+# User this if you you are using deamonset method
+kubectl patch gatewayclass eg --type merge -p '{
+  "spec": {
+    "parametersRef": {
+      "group": "gateway.envoyproxy.io",
+      "kind": "EnvoyProxy",
+      "name": "eg",
+      "namespace": "envoy-gateway-system"
+    }
+  }
+}'

@@ -24,3 +24,21 @@ spec:
       certificateRefs:
         - kind: Secret
           name: oslrnd-com
+
+# This one is for DeamonSet Method
+
+cat <<EOF | kubectl apply -f -
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: eg
+  namespace: envoy-gateway-system
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDaemonSet:
+        pod:
+          nodeSelector:
+            node-role.kubernetes.io/worker: worker
+EOF

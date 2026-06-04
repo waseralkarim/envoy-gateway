@@ -6,7 +6,7 @@ metadata:
 spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
   
-# User this if you you are using deamonset method
+# Use this if you you are using deamonset method
 kubectl patch gatewayclass eg --type merge -p '{
   "spec": {
     "parametersRef": {
